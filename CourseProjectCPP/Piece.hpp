@@ -44,6 +44,12 @@ namespace chess
         [[nodiscard]] int   GetRow()    const;
         [[nodiscard]] int   GetCol()    const;
         [[nodiscard]] bool  HasShield() const;
-    };
+        [[nodiscard]] int   GetCost()   const;
+        [[nodiscard]] bool  IsAt(int row, int col) const;
 
+        bool ApplyShield();
+        bool BreakShield();
+        void MoveTo(int row, int col);
+        void Print() const;
+    };
 } // namespace chess
