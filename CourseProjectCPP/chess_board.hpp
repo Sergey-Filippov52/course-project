@@ -3,7 +3,7 @@
 //
 #pragma once
 
-#include "piece.hpp"
+#include "chess_piece.hpp"
 
 namespace chess
 {

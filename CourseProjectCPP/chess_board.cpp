@@ -1,4 +1,4 @@
-#include "board.hpp"
+#include "chess_board.hpp"
 
 #include <iostream>
 
@@ -85,9 +85,9 @@ namespace chess
         }
         std::cout << "\n";
 
-        for (int r = 0; r < BOARD_ROWS; ++r)
+        for (int r = BOARD_ROWS - 1; r >= 0; --r)
         {
-            int label = BOARD_ROWS - r;
+            int label = r + 1;
             std::cout << label << (label < 10 ? "  " : " ");
             for (int c = 0; c < BOARD_COLS; ++c)
             {

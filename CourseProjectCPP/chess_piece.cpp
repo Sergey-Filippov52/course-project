@@ -2,7 +2,7 @@
 // Τΰιλ piece.cpp
 //
 
-#include "piece.hpp"
+#include "chess_piece.hpp"
 
 #include <iostream>
 

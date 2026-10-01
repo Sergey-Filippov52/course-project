@@ -1,7 +1,7 @@
 //
 // Файл main.cpp
 //
-#include "Game.hpp"
+#include "chess_game.hpp"
 
 #include <iostream>
 #include <windows.h>
@@ -28,10 +28,10 @@ int main()
         game.Start();
 
         game.GetBoard().PlacePiece(dynamicKnight, 7, 1);
-        game.GetBoard().PlacePiece(dynamicKnight, 7, 1);
 
-        Piece king(Piece::Type::eKing, Piece::Color::eWhite, 0, 4);
+        Piece king(Piece::Type::eKing, Piece::Color::eWhite, 0, 5);
         king.ApplyShield();
+        game.GetBoard().PlacePiece(&king, 7, 1);
 
         std::cout << "\n--- Состояние доски ---\n";
         game.GetBoard().Print();
@@ -43,7 +43,7 @@ int main()
     }
 
     std::cout << "\n--- Партия уничтожена, а фигура - нет ---\n";
-    std::cout << "dynamicKnight жив: ";
+    std::cout << "dynamicKnight существует: ";
     dynamicKnight->Print();
     delete dynamicKnight;
 
