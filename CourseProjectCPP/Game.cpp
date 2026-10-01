@@ -1,4 +1,4 @@
-#include "Game.hpp"
+#include "game.hpp"
 
 #include <iostream>
 
@@ -55,7 +55,7 @@ namespace chess
             std::cout << "[" << TAG << "] Волшебники ещё живы — победу объявить нельзя\n";
             return false;
         }
-        std::cout << "[" << TAG << "] Волшебники побеждены — мат разрешён\n";
+        std::cout << "[" << TAG << "] Волшебники побеждены\n";
         return true;
     }
 

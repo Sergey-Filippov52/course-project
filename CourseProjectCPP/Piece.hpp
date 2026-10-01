@@ -1,5 +1,5 @@
 //
-// Τΰιλ Piece.hpp
+// Τΰιλ piece.hpp
 //
 #pragma once
 
@@ -39,17 +39,19 @@ namespace chess
         Piece(Type type, Color color, int row, int col);
         ~Piece();
 
-        [[nodiscard]] Type  GetType()   const;
-        [[nodiscard]] Color GetColor()  const;
-        [[nodiscard]] int   GetRow()    const;
-        [[nodiscard]] int   GetCol()    const;
-        [[nodiscard]] bool  HasShield() const;
-        [[nodiscard]] int   GetCost()   const;
-        [[nodiscard]] bool  IsAt(int row, int col) const;
+        [[nodiscard]] Type        GetType()     const;
+        [[nodiscard]] Color       GetColor()    const;
+        [[nodiscard]] int         GetRow()      const;
+        [[nodiscard]] int         GetCol()      const;
+        [[nodiscard]] bool        HasShield()   const;
+        [[nodiscard]] int         GetCost()     const;
+        [[nodiscard]] bool        IsAt(int row, int col) const;
+        [[nodiscard]] const char* GetTypeName() const;
 
         bool ApplyShield();
         bool BreakShield();
         void MoveTo(int row, int col);
         void Print() const;
     };
+
 } // namespace chess

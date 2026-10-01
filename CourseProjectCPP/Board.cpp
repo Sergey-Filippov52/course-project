@@ -1,4 +1,4 @@
-#include "Board.hpp"
+#include "board.hpp"
 
 #include <iostream>
 
@@ -7,14 +7,15 @@ namespace chess
 
     Board::Board()
     {
-        for (int r = 0; r < SIZE; ++r)
+        for (int r = 0; r < BOARD_ROWS; ++r)
         {
-            for (int c = 0; c < SIZE; ++c)
+            for (int c = 0; c < BOARD_COLS; ++c)
             {
                 m_grid[r][c] = nullptr;
             }
         }
-        std::cout << "[" << TAG << "] Создана доска 10x10\n";
+        std::cout << "[" << TAG << "] Создана доска "
+            << BOARD_ROWS << "x" << BOARD_COLS << "\n";
     }
 
     Board::~Board()
@@ -24,7 +25,7 @@ namespace chess
 
     bool Board::IsCellFree(int row, int col) const
     {
-        if (row < 0 || row >= SIZE || col < 0 || col >= SIZE)
+        if (row < 0 || row >= BOARD_ROWS || col < 0 || col >= BOARD_COLS)
         {
             return false;
         }
@@ -33,7 +34,7 @@ namespace chess
 
     Piece* Board::GetPieceAt(int row, int col) const
     {
-        if (row < 0 || row >= SIZE || col < 0 || col >= SIZE)
+        if (row < 0 || row >= BOARD_ROWS || col < 0 || col >= BOARD_COLS)
         {
             return nullptr;
         }
@@ -47,7 +48,7 @@ namespace chess
             std::cout << "[" << TAG << "] Нарушение правила: пустая фигура\n";
             return false;
         }
-        if (row < 0 || row >= SIZE || col < 0 || col >= SIZE)
+        if (row < 0 || row >= BOARD_ROWS || col < 0 || col >= BOARD_COLS)
         {
             std::cout << "[" << TAG << "] Нарушение правила: клетка за пределами доски\n";
             return false;
@@ -66,7 +67,7 @@ namespace chess
 
     Piece* Board::RemovePiece(int row, int col)
     {
-        if (row < 0 || row >= SIZE || col < 0 || col >= SIZE)
+        if (row < 0 || row >= BOARD_ROWS || col < 0 || col >= BOARD_COLS)
         {
             return nullptr;
         }
@@ -78,16 +79,17 @@ namespace chess
     void Board::Print() const
     {
         std::cout << "   ";
-        for (int c = 0; c < SIZE; ++c)
+        for (int c = 0; c < BOARD_COLS; ++c)
         {
             std::cout << static_cast<char>('a' + c) << " ";
         }
         std::cout << "\n";
-        for (int r = 0; r < SIZE; ++r)
+
+        for (int r = 0; r < BOARD_ROWS; ++r)
         {
-            int label = SIZE - r;
+            int label = BOARD_ROWS - r;
             std::cout << label << (label < 10 ? "  " : " ");
-            for (int c = 0; c < SIZE; ++c)
+            for (int c = 0; c < BOARD_COLS; ++c)
             {
                 std::cout << (m_grid[r][c] != nullptr ? "Ф " : ". ");
             }

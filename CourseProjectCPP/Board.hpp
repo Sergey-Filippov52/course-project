@@ -3,7 +3,7 @@
 //
 #pragma once
 
-#include "Piece.hpp"
+#include "piece.hpp"
 
 namespace chess
 {
@@ -12,9 +12,10 @@ namespace chess
     {
     private:
         static constexpr auto TAG = "board";
-        static constexpr int  SIZE = 10;
+        static constexpr int BOARD_ROWS = 8;
+        static constexpr int BOARD_COLS = 10;
 
-        Piece* m_grid[SIZE][SIZE];
+        Piece* m_grid[BOARD_ROWS][BOARD_COLS];
 
     public:
         Board();

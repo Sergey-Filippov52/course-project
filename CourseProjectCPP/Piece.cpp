@@ -1,8 +1,8 @@
 //
-// Файл Piece.cpp
+// Файл piece.cpp
 //
 
-#include "Piece.hpp"
+#include "piece.hpp"
 
 #include <iostream>
 
@@ -49,6 +49,20 @@ namespace chess
         return 0;
     }
 
+    const char* Piece::GetTypeName() const
+    {
+        switch (m_type)
+        {
+        case Type::ePawn:   return "пешка";
+        case Type::eKnight: return "конь";
+        case Type::eBishop: return "слон";
+        case Type::eRook:   return "ладья";
+        case Type::eQueen:  return "ферзь";
+        case Type::eKing:   return "король";
+        }
+        return "неизвестно";
+    }
+
     bool Piece::IsAt(int row, int col) const
     {
         return m_row == row && m_col == col;
@@ -84,21 +98,17 @@ namespace chess
 
     void Piece::MoveTo(int row, int col)
     {
-        if (row < 0 || row >= 10 || col < 0 || col >= 10)
-        {
-            std::cout << "[" << TAG << "] Нарушение правила: ход за пределы доски\n";
-            return;
-        }
         m_row = row;
         m_col = col;
     }
 
     void Piece::Print() const
     {
-        std::cout << "Фигура(тип=" << static_cast<int>(m_type)
+        std::cout << "Фигура(тип=" << GetTypeName()
             << ", цвет=" << (m_color == Color::eWhite ? "белый" : "чёрный")
             << ", строка=" << m_row << ", столбец=" << m_col
             << ", стоимость=" << GetCost()
             << ", щит=" << (m_hasShield ? "есть" : "нет") << ")\n";
     }
+
 } // namespace chess
