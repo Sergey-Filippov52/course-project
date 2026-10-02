@@ -8,8 +8,8 @@
 
 int main()
 {
-    SetConsoleOutputCP(1251);
-
+    SetConsoleOutputCP(65001);
+    SetConsoleCP(65001);
     using namespace chess;
 
     std::cout << "=== 1. Статический объект во вложенном блоке ===\n";
