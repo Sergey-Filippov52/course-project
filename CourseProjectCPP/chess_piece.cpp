@@ -1,5 +1,5 @@
 //
-// Файл piece.cpp
+// Р¤Р°Р№Р» piece.cpp
 //
 
 #include "chess_piece.hpp"
@@ -21,12 +21,12 @@ namespace chess
         , m_col{ col }
         , m_hasShield{ false }
     {
-        std::cout << "[" << TAG << "] Создана на клетке (" << row << ", " << col << ")\n";
+        std::cout << "[" << TAG << "] РЎРѕР·РґР°РЅР° РЅР° РєР»РµС‚РєРµ (" << row << ", " << col << ")\n";
     }
 
     Piece::~Piece()
     {
-        std::cout << "[" << TAG << "] Уничтожена на клетке (" << m_row << ", " << m_col << ")\n";
+        std::cout << "[" << TAG << "] РЈРЅРёС‡С‚РѕР¶РµРЅР° РЅР° РєР»РµС‚РєРµ (" << m_row << ", " << m_col << ")\n";
     }
 
     Piece::Type  Piece::GetType()   const { return m_type; }
@@ -53,14 +53,14 @@ namespace chess
     {
         switch (m_type)
         {
-        case Type::ePawn:   return "пешка";
-        case Type::eKnight: return "конь";
-        case Type::eBishop: return "слон";
-        case Type::eRook:   return "ладья";
-        case Type::eQueen:  return "ферзь";
-        case Type::eKing:   return "король";
+        case Type::ePawn:   return "РїРµС€РєР°";
+        case Type::eKnight: return "РєРѕРЅСЊ";
+        case Type::eBishop: return "СЃР»РѕРЅ";
+        case Type::eRook:   return "Р»Р°РґСЊСЏ";
+        case Type::eQueen:  return "С„РµСЂР·СЊ";
+        case Type::eKing:   return "РєРѕСЂРѕР»СЊ";
         }
-        return "неизвестно";
+        return "РЅРµРёР·РІРµСЃС‚РЅРѕ";
     }
 
     bool Piece::IsAt(int row, int col) const
@@ -72,16 +72,16 @@ namespace chess
     {
         if (m_type == Type::eKing)
         {
-            std::cout << "[" << TAG << "] Нарушение правила: на короля нельзя наложить щит\n";
+            std::cout << "[" << TAG << "] РќР°СЂСѓС€РµРЅРёРµ РїСЂР°РІРёР»Р°: РЅР° РєРѕСЂРѕР»СЏ РЅРµР»СЊР·СЏ РЅР°Р»РѕР¶РёС‚СЊ С‰РёС‚\n";
             return false;
         }
         if (m_hasShield)
         {
-            std::cout << "[" << TAG << "] Нарушение правила: щит уже наложен\n";
+            std::cout << "[" << TAG << "] РќР°СЂСѓС€РµРЅРёРµ РїСЂР°РІРёР»Р°: С‰РёС‚ СѓР¶Рµ РЅР°Р»РѕР¶РµРЅ\n";
             return false;
         }
         m_hasShield = true;
-        std::cout << "[" << TAG << "] Щит наложен\n";
+        std::cout << "[" << TAG << "] Р©РёС‚ РЅР°Р»РѕР¶РµРЅ\n";
         return true;
     }
 
@@ -92,7 +92,7 @@ namespace chess
             return false;
         }
         m_hasShield = false;
-        std::cout << "[" << TAG << "] Щит сломан\n";
+        std::cout << "[" << TAG << "] Р©РёС‚ СЃР»РѕРјР°РЅ\n";
         return true;
     }
 
@@ -104,11 +104,11 @@ namespace chess
 
     void Piece::Print() const
     {
-        std::cout << "Фигура(тип=" << GetTypeName()
-            << ", цвет=" << (m_color == Color::eWhite ? "белый" : "чёрный")
-            << ", строка=" << m_row << ", столбец=" << m_col
-            << ", стоимость=" << GetCost()
-            << ", щит=" << (m_hasShield ? "есть" : "нет") << ")\n";
+        std::cout << "Р¤РёРіСѓСЂР°(С‚РёРї=" << GetTypeName()
+            << ", С†РІРµС‚=" << (m_color == Color::eWhite ? "Р±РµР»С‹Р№" : "С‡С‘СЂРЅС‹Р№")
+            << ", СЃС‚СЂРѕРєР°=" << m_row << ", СЃС‚РѕР»Р±РµС†=" << m_col
+            << ", СЃС‚РѕРёРјРѕСЃС‚СЊ=" << GetCost()
+            << ", С‰РёС‚=" << (m_hasShield ? "РµСЃС‚СЊ" : "РЅРµС‚") << ")\n";
     }
 
 } // namespace chess

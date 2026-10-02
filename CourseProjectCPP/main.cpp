@@ -1,5 +1,5 @@
 //
-// Файл main.cpp
+// Р¤Р°Р№Р» main.cpp
 //
 #include "chess_game.hpp"
 
@@ -12,7 +12,7 @@ int main()
     SetConsoleCP(65001);
     using namespace chess;
 
-    std::cout << "=== 1. Статический объект во вложенном блоке ===\n";
+    std::cout << "=== 1. РЎС‚Р°С‚РёС‡РµСЃРєРёР№ РѕР±СЉРµРєС‚ РІРѕ РІР»РѕР¶РµРЅРЅРѕРј Р±Р»РѕРєРµ ===\n";
     {
         Piece staticPawn(Piece::Type::ePawn, Piece::Color::eWhite, 7, 0);
         staticPawn.ApplyShield();
@@ -20,7 +20,7 @@ int main()
         staticPawn.Print();
     }
 
-    std::cout << "\n=== 2. Композиция и агрегация ===\n";
+    std::cout << "\n=== 2. РљРѕРјРїРѕР·РёС†РёСЏ Рё Р°РіСЂРµРіР°С†РёСЏ ===\n";
     Piece* dynamicKnight = new Piece(Piece::Type::eKnight, Piece::Color::eWhite, 0, 1);
 
     {
@@ -33,21 +33,21 @@ int main()
         king.ApplyShield();
         game.GetBoard().PlacePiece(&king, 7, 1);
 
-        std::cout << "\n--- Состояние доски ---\n";
+        std::cout << "\n--- РЎРѕСЃС‚РѕСЏРЅРёРµ РґРѕСЃРєРё ---\n";
         game.GetBoard().Print();
 
-        std::cout << "\n--- Проверка победы ---\n";
+        std::cout << "\n--- РџСЂРѕРІРµСЂРєР° РїРѕР±РµРґС‹ ---\n";
         game.CheckVictory();
 
-        std::cout << "\n--- Выходим из внутреннего блока ---\n";
+        std::cout << "\n--- Р’С‹С…РѕРґРёРј РёР· РІРЅСѓС‚СЂРµРЅРЅРµРіРѕ Р±Р»РѕРєР° ---\n";
     }
 
-    std::cout << "\n--- Партия уничтожена, а фигура - нет ---\n";
-    std::cout << "dynamicKnight существует: ";
+    std::cout << "\n--- РџР°СЂС‚РёСЏ СѓРЅРёС‡С‚РѕР¶РµРЅР°, Р° С„РёРіСѓСЂР° - РЅРµС‚ ---\n";
+    std::cout << "dynamicKnight СЃСѓС‰РµСЃС‚РІСѓРµС‚: ";
     dynamicKnight->Print();
     delete dynamicKnight;
 
-    std::cout << "\n=== 3. Динамический массив объектов ===\n";
+    std::cout << "\n=== 3. Р”РёРЅР°РјРёС‡РµСЃРєРёР№ РјР°СЃСЃРёРІ РѕР±СЉРµРєС‚РѕРІ ===\n";
     Piece* arrayOfPieces = new Piece[3]{
         Piece(Piece::Type::ePawn, Piece::Color::eWhite, 6, 0),
         Piece(Piece::Type::ePawn, Piece::Color::eWhite, 6, 1),
@@ -59,7 +59,7 @@ int main()
     }
     delete[] arrayOfPieces;
 
-    std::cout << "\n=== 4. Массив динамических объектов ===\n";
+    std::cout << "\n=== 4. РњР°СЃСЃРёРІ РґРёРЅР°РјРёС‡РµСЃРєРёС… РѕР±СЉРµРєС‚РѕРІ ===\n";
     Piece** arrayOfPtrs = new Piece * [3];
     arrayOfPtrs[0] = new Piece(Piece::Type::eRook, Piece::Color::eBlack, 0, 0);
     arrayOfPtrs[1] = new Piece(Piece::Type::eRook, Piece::Color::eBlack, 0, 9);

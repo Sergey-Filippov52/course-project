@@ -7,13 +7,13 @@ namespace chess
 
     Game::Game()
     {
-        std::cout << "[" << TAG << "] Ñîçäàíà. Õîä èãðîêà=" << m_currentPlayer
-            << ", âîëøåáíèêîâ=" << m_wizardCount << "\n";
+        std::cout << "[" << TAG << "] Ð¡Ð¾Ð·Ð´Ð°Ð½Ð°. Ð¥Ð¾Ð´ Ð¸Ð³Ñ€Ð¾ÐºÐ°=" << m_currentPlayer
+            << ", Ð²Ð¾Ð»ÑˆÐµÐ±Ð½Ð¸ÐºÐ¾Ð²=" << m_wizardCount << "\n";
     }
 
     Game::~Game()
     {
-        std::cout << "[" << TAG << "] Óíè÷òîæåíà (äîñêà óõîäèò âìåñòå ñ íåé — êîìïîçèöèÿ)\n";
+        std::cout << "[" << TAG << "] Ð£Ð½Ð¸Ñ‡Ñ‚Ð¾Ð¶ÐµÐ½Ð° (Ð´Ð¾ÑÐºÐ° ÑƒÑ…Ð¾Ð´Ð¸Ñ‚ Ð²Ð¼ÐµÑÑ‚Ðµ Ñ Ð½ÐµÐ¹ â€” ÐºÐ¾Ð¼Ð¿Ð¾Ð·Ð¸Ñ†Ð¸Ñ)\n";
     }
 
     Board& Game::GetBoard() { return m_board; }
@@ -22,21 +22,21 @@ namespace chess
 
     void Game::Start()
     {
-        std::cout << "[" << TAG << "] Ñòàðò. Âîëøåáíèêè çàíèìàþò 5-þ è 6-þ ãîðèçîíòàëè\n";
+        std::cout << "[" << TAG << "] Ð¡Ñ‚Ð°Ñ€Ñ‚. Ð’Ð¾Ð»ÑˆÐµÐ±Ð½Ð¸ÐºÐ¸ Ð·Ð°Ð½Ð¸Ð¼Ð°ÑŽÑ‚ 5-ÑŽ Ð¸ 6-ÑŽ Ð³Ð¾Ñ€Ð¸Ð·Ð¾Ð½Ñ‚Ð°Ð»Ð¸\n";
     }
 
     bool Game::MakeMove(Piece* piece, int row, int col)
     {
         if (piece == nullptr)
         {
-            std::cout << "[" << TAG << "] Íàðóøåíèå ïðàâèëà: ôèãóðà íå âûáðàíà\n";
+            std::cout << "[" << TAG << "] ÐÐ°Ñ€ÑƒÑˆÐµÐ½Ð¸Ðµ Ð¿Ñ€Ð°Ð²Ð¸Ð»Ð°: Ñ„Ð¸Ð³ÑƒÑ€Ð° Ð½Ðµ Ð²Ñ‹Ð±Ñ€Ð°Ð½Ð°\n";
             return false;
         }
         if (!m_board.PlacePiece(piece, row, col))
         {
             return false;
         }
-        std::cout << "[" << TAG << "] Õîä ñäåëàí èãðîêîì " << m_currentPlayer << "\n";
+        std::cout << "[" << TAG << "] Ð¥Ð¾Ð´ ÑÐ´ÐµÐ»Ð°Ð½ Ð¸Ð³Ñ€Ð¾ÐºÐ¾Ð¼ " << m_currentPlayer << "\n";
         m_currentPlayer = (m_currentPlayer == 1) ? 2 : 1;
         return true;
     }
@@ -44,7 +44,7 @@ namespace chess
     void Game::SpawnWizards()
     {
         m_wizardCount += 2;
-        std::cout << "[" << TAG << "] Âîëøåáíèêè óñèëåíû. Âñåãî âîëøåáíèêîâ: "
+        std::cout << "[" << TAG << "] Ð’Ð¾Ð»ÑˆÐµÐ±Ð½Ð¸ÐºÐ¸ ÑƒÑÐ¸Ð»ÐµÐ½Ñ‹. Ð’ÑÐµÐ³Ð¾ Ð²Ð¾Ð»ÑˆÐµÐ±Ð½Ð¸ÐºÐ¾Ð²: "
             << m_wizardCount << "\n";
     }
 
@@ -52,10 +52,10 @@ namespace chess
     {
         if (m_wizardCount > 0)
         {
-            std::cout << "[" << TAG << "] Âîëøåáíèêè åù¸ æèâû — ïîáåäó îáúÿâèòü íåëüçÿ\n";
+            std::cout << "[" << TAG << "] Ð’Ð¾Ð»ÑˆÐµÐ±Ð½Ð¸ÐºÐ¸ ÐµÑ‰Ñ‘ Ð¶Ð¸Ð²Ñ‹ â€” Ð¿Ð¾Ð±ÐµÐ´Ñƒ Ð¾Ð±ÑŠÑÐ²Ð¸Ñ‚ÑŒ Ð½ÐµÐ»ÑŒÐ·Ñ\n";
             return false;
         }
-        std::cout << "[" << TAG << "] Âîëøåáíèêè ïîáåæäåíû\n";
+        std::cout << "[" << TAG << "] Ð’Ð¾Ð»ÑˆÐµÐ±Ð½Ð¸ÐºÐ¸ Ð¿Ð¾Ð±ÐµÐ¶Ð´ÐµÐ½Ñ‹\n";
         return true;
     }
 
