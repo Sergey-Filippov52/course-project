@@ -28,13 +28,13 @@ public class Piece
 
     public string TypeName => _type switch
     {
-        PieceType.Pawn => "ÔÂ¯Í‡",
-        PieceType.Knight => "ÍÓÌ¸",
-        PieceType.Bishop => "ÒÎÓÌ",
-        PieceType.Rook => "Î‡‰¸ˇ",
-        PieceType.Queen => "ÙÂÁ¸",
-        PieceType.King => "ÍÓÓÎ¸",
-        _ => "ÌÂËÁ‚ÂÒÚÌÓ",
+        PieceType.Pawn => "–ø–µ—à–∫–∞",
+        PieceType.Knight => "–∫–æ–Ω—å",
+        PieceType.Bishop => "—Å–ª–æ–Ω",
+        PieceType.Rook => "–ª–∞–¥—å—è",
+        PieceType.Queen => "—Ñ–µ—Ä–∑—å",
+        PieceType.King => "–∫–æ—Ä–æ–ª—å",
+        _ => "–Ω–µ–∏–∑–≤–µ—Å—Ç–Ω–æ",
     };
 
     public Piece(PieceType type, PieceColor color, int row, int col)
@@ -43,7 +43,7 @@ public class Piece
         _color = color;
         _row = row;
         _col = col;
-        Console.WriteLine($"[piece] —ÓÁ‰‡Ì‡ Ì‡ ÍÎÂÚÍÂ ({row}, {col})");
+        Console.WriteLine($"[piece] –°–æ–∑–¥–∞–Ω–∞ –Ω–∞ –∫–ª–µ—Ç–∫–µ ({row}, {col})");
     }
 
     public Piece() : this(PieceType.Pawn, PieceColor.White, 0, 0) { }
@@ -52,16 +52,16 @@ public class Piece
     {
         if (_type == PieceType.King)
         {
-            Console.WriteLine("[piece] Õ‡Û¯ÂÌËÂ Ô‡‚ËÎ‡: Ì‡ ÍÓÓÎˇ ÌÂÎ¸Áˇ Ì‡ÎÓÊËÚ¸ ˘ËÚ");
+            Console.WriteLine("[piece] –ù–∞—Ä—É—à–µ–Ω–∏–µ –ø—Ä–∞–≤–∏–ª–∞: –Ω–∞ –∫–æ—Ä–æ–ª—è –Ω–µ–ª—å–∑—è –Ω–∞–ª–æ–∂–∏—Ç—å —â–∏—Ç");
             return false;
         }
         if (_hasShield)
         {
-            Console.WriteLine("[piece] Õ‡Û¯ÂÌËÂ Ô‡‚ËÎ‡: ˘ËÚ ÛÊÂ Ì‡ÎÓÊÂÌ");
+            Console.WriteLine("[piece] –ù–∞—Ä—É—à–µ–Ω–∏–µ –ø—Ä–∞–≤–∏–ª–∞: —â–∏—Ç —É–∂–µ –Ω–∞–ª–æ–∂–µ–Ω");
             return false;
         }
         _hasShield = true;
-        Console.WriteLine("[piece] ŸËÚ Ì‡ÎÓÊÂÌ");
+        Console.WriteLine("[piece] –©–∏—Ç –Ω–∞–ª–æ–∂–µ–Ω");
         return true;
     }
 
@@ -69,7 +69,7 @@ public class Piece
     {
         if (!_hasShield) return false;
         _hasShield = false;
-        Console.WriteLine("[piece] ŸËÚ ÒÎÓÏ‡Ì");
+        Console.WriteLine("[piece] –©–∏—Ç —Å–ª–æ–º–∞–Ω");
         return true;
     }
 
@@ -82,7 +82,7 @@ public class Piece
     public bool IsAt(int row, int col) => _row == row && _col == col;
 
     public override string ToString()
-        => $"‘Ë„Û‡(ÚËÔ={TypeName}, ˆ‚ÂÚ={(_color == PieceColor.White ? "·ÂÎ˚È" : "˜∏Ì˚È")}, " +
-           $"ÒÚÓÍ‡={_row}, ÒÚÓÎ·Âˆ={_col}, ÒÚÓËÏÓÒÚ¸={Cost}, " +
-           $"˘ËÚ={(_hasShield ? "ÂÒÚ¸" : "ÌÂÚ")})";
+        => $"–§–∏–≥—É—Ä–∞(—Ç–∏–ø={TypeName}, —Ü–≤–µ—Ç={(_color == PieceColor.White ? "–±–µ–ª—ã–π" : "—á—ë—Ä–Ω—ã–π")}, " +
+           $"—Å—Ç—Ä–æ–∫–∞={_row}, —Å—Ç–æ–ª–±–µ—Ü={_col}, —Å—Ç–æ–∏–º–æ—Å—Ç—å={Cost}, " +
+           $"—â–∏—Ç={(_hasShield ? "–µ—Å—Ç—å" : "–Ω–µ—Ç")})";
 }

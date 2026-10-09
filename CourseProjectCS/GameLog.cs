@@ -7,12 +7,12 @@ public sealed class GameLog : IDisposable
     public GameLog(string matchName)
     {
         _matchName = matchName;
-        Console.WriteLine($"[game-log] Запись партии «{_matchName}» открыта");
+        Console.WriteLine($"[game-log] Р—Р°РїРёСЃСЊ РїР°СЂС‚РёРё В«{_matchName}В» РѕС‚РєСЂС‹С‚Р°");
     }
 
     public void Write(string line)
-        => Console.WriteLine($"    Ход: {line}");
+        => Console.WriteLine($"    РҐРѕРґ: {line}");
 
     public void Dispose()
-        => Console.WriteLine($"[-] Запись партии «{_matchName}» закрыта");
+        => Console.WriteLine($"[-] Р—Р°РїРёСЃСЊ РїР°СЂС‚РёРё В«{_matchName}В» Р·Р°РєСЂС‹С‚Р°");
 }

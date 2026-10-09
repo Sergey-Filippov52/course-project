@@ -10,7 +10,7 @@ public class Board
     public Board()
     {
         _grid = new Piece?[Rows, Cols];
-        Console.WriteLine($"[board] Создана доска {Rows}x{Cols}");
+        Console.WriteLine($"[board] РЎРѕР·РґР°РЅР° РґРѕСЃРєР° {Rows}x{Cols}");
     }
 
     public bool IsCellFree(int row, int col)
@@ -26,22 +26,22 @@ public class Board
     {
         if (piece is null)
         {
-            Console.WriteLine("[board] Нарушение правила: пустая фигура");
+            Console.WriteLine("[board] РќР°СЂСѓС€РµРЅРёРµ РїСЂР°РІРёР»Р°: РїСѓСЃС‚Р°СЏ С„РёРіСѓСЂР°");
             return false;
         }
         if (!InBounds(row, col))
         {
-            Console.WriteLine("[board] Нарушение правила: клетка за пределами доски");
+            Console.WriteLine("[board] РќР°СЂСѓС€РµРЅРёРµ РїСЂР°РІРёР»Р°: РєР»РµС‚РєР° Р·Р° РїСЂРµРґРµР»Р°РјРё РґРѕСЃРєРё");
             return false;
         }
         if (_grid[row, col] is not null)
         {
-            Console.WriteLine($"[board] Нарушение правила: клетка ({row}, {col}) уже занята");
+            Console.WriteLine($"[board] РќР°СЂСѓС€РµРЅРёРµ РїСЂР°РІРёР»Р°: РєР»РµС‚РєР° ({row}, {col}) СѓР¶Рµ Р·Р°РЅСЏС‚Р°");
             return false;
         }
         _grid[row, col] = piece;
         piece.MoveTo(row, col);
-        Console.WriteLine($"[board] Фигура поставлена на ({row}, {col})");
+        Console.WriteLine($"[board] Р¤РёРіСѓСЂР° РїРѕСЃС‚Р°РІР»РµРЅР° РЅР° ({row}, {col})");
         return true;
     }
 
@@ -65,7 +65,7 @@ public class Board
         {
             sb.Append(r + 1).Append(r < 9 ? "  " : " ");
             for (int c = 0; c < Cols; c++)
-                sb.Append(_grid[r, c] is not null ? "Ф " : ". ");
+                sb.Append(_grid[r, c] is not null ? "Р¤ " : ". ");
             sb.AppendLine();
         }
         return sb.ToString();

@@ -14,11 +14,11 @@ public class Game
         _board = new Board();
         _currentPlayer = 1;
         _wizardCount = 2;
-        Console.WriteLine($"[game] Создана. Ход игрока={_currentPlayer}, волшебников={_wizardCount}");
+        Console.WriteLine($"[game] РЎРѕР·РґР°РЅР°. РҐРѕРґ РёРіСЂРѕРєР°={_currentPlayer}, РІРѕР»С€РµР±РЅРёРєРѕРІ={_wizardCount}");
     }
 
     public void Start()
-        => Console.WriteLine("[game] Старт. Волшебники занимают 5-ю и 6-ю горизонтали");
+        => Console.WriteLine("[game] РЎС‚Р°СЂС‚. Р’РѕР»С€РµР±РЅРёРєРё Р·Р°РЅРёРјР°СЋС‚ 5-СЋ Рё 6-СЋ РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё");
 
     public bool PlacePiece(Piece? piece, int row, int col)
         => _board.PlacePiece(piece, row, col);
@@ -33,12 +33,12 @@ public class Game
     {
         if (piece is null)
         {
-            Console.WriteLine("[game] Нарушение правила: фигура не выбрана");
+            Console.WriteLine("[game] РќР°СЂСѓС€РµРЅРёРµ РїСЂР°РІРёР»Р°: С„РёРіСѓСЂР° РЅРµ РІС‹Р±СЂР°РЅР°");
             return false;
         }
         if (!_board.PlacePiece(piece, row, col)) return false;
 
-        Console.WriteLine($"[game] Ход сделан игроком {_currentPlayer}");
+        Console.WriteLine($"[game] РҐРѕРґ СЃРґРµР»Р°РЅ РёРіСЂРѕРєРѕРј {_currentPlayer}");
         _currentPlayer = _currentPlayer == 1 ? 2 : 1;
         return true;
     }
@@ -46,20 +46,20 @@ public class Game
     public void SpawnWizards()
     {
         _wizardCount += 2;
-        Console.WriteLine($"[game] Волшебники усилены. Всего волшебников: {_wizardCount}");
+        Console.WriteLine($"[game] Р’РѕР»С€РµР±РЅРёРєРё СѓСЃРёР»РµРЅС‹. Р’СЃРµРіРѕ РІРѕР»С€РµР±РЅРёРєРѕРІ: {_wizardCount}");
     }
 
     public bool CheckVictory()
     {
         if (_wizardCount > 0)
         {
-            Console.WriteLine("[game] Волшебники ещё живы — победу объявить нельзя");
+            Console.WriteLine("[game] Р’РѕР»С€РµР±РЅРёРєРё РµС‰С‘ Р¶РёРІС‹ вЂ” РїРѕР±РµРґСѓ РѕР±СЉСЏРІРёС‚СЊ РЅРµР»СЊР·СЏ");
             return false;
         }
-        Console.WriteLine("[game] Волшебники побеждены — мат разрешён");
+        Console.WriteLine("[game] Р’РѕР»С€РµР±РЅРёРєРё РїРѕР±РµР¶РґРµРЅС‹ вЂ” РјР°С‚ СЂР°Р·СЂРµС€С‘РЅ");
         return true;
     }
 
     public override string ToString()
-        => $"Партия: ход игрока {_currentPlayer}, волшебников {_wizardCount}";
+        => $"РџР°СЂС‚РёСЏ: С…РѕРґ РёРіСЂРѕРєР° {_currentPlayer}, РІРѕР»С€РµР±РЅРёРєРѕРІ {_wizardCount}";
 }
