@@ -29,8 +29,8 @@ namespace chess
         [[nodiscard]] bool   IsCellFree(int row, int col) const;
         [[nodiscard]] Piece* GetPieceAt(int row, int col) const;
 
-        bool   PlacePiece(Piece* piece, int row, int col);
-        Piece* RemovePiece(int row, int col);
+        bool PlacePiece(std::unique_ptr<Piece> piece, int row, int col);
+        std::unique_ptr<Piece> RemovePiece(int row, int col);
         void   Print() const;
     };
 
