@@ -1,10 +1,10 @@
 //
-//  Π€Π°ΠΉΠ» Board.hpp
+//  Τΰιλ Board.hpp
 //
 #pragma once
 
 #include "chess_piece.hpp"
-
+#include <memory>
 namespace chess
 {
 
@@ -15,7 +15,7 @@ namespace chess
         static constexpr int BOARD_ROWS = 8;
         static constexpr int BOARD_COLS = 10;
 
-        Piece* m_grid[BOARD_ROWS][BOARD_COLS];
+        std::unique_ptr<Piece> m_grid[BOARD_ROWS][BOARD_COLS];
 
     public:
         Board();
