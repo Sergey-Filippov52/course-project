@@ -1,7 +1,7 @@
 #include "chess_game.hpp"
 
 #include <iostream>
-
+#include <utility>
 namespace chess
 {
 
@@ -25,14 +25,14 @@ namespace chess
         std::cout << "[" << TAG << "] Старт. Волшебники занимают 5-ю и 6-ю горизонтали\n";
     }
 
-    bool Game::MakeMove(Piece* piece, int row, int col)
+    bool Game::MakeMove(std::unique_ptr<Piece> piece, int row, int col)
     {
         if (piece == nullptr)
         {
             std::cout << "[" << TAG << "] Нарушение правила: фигура не выбрана\n";
             return false;
         }
-        if (!m_board.PlacePiece(piece, row, col))
+        if (!m_board.PlacePiece(std::move(piece), row, col))
         {
             return false;
         }

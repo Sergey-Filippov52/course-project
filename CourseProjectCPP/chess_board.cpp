@@ -1,26 +1,19 @@
 #include "chess_board.hpp"
 
 #include <iostream>
-
+#include <utility>
 namespace chess
 {
 
     Board::Board()
     {
-        for (int r = 0; r < BOARD_ROWS; ++r)
-        {
-            for (int c = 0; c < BOARD_COLS; ++c)
-            {
-                m_grid[r][c] = nullptr;
-            }
-        }
         std::cout << "[" << TAG << "] Создана доска "
             << BOARD_ROWS << "x" << BOARD_COLS << "\n";
     }
 
     Board::~Board()
     {
-        std::cout << "[" << TAG << "] Уничтожена (фигуры живы — агрегация)\n";
+        std::cout << "[" << TAG << "] Уничтожена вместе с фигурами\n";
     }
 
     bool Board::IsCellFree(int row, int col) const
@@ -38,10 +31,10 @@ namespace chess
         {
             return nullptr;
         }
-        return m_grid[row][col];
+        return m_grid[row][col].get();
     }
 
-    bool Board::PlacePiece(Piece* piece, int row, int col)
+    bool Board::PlacePiece(std::unique_ptr<Piece> piece, int row, int col)
     {
         if (piece == nullptr)
         {
@@ -59,21 +52,19 @@ namespace chess
                 << ") уже занята\n";
             return false;
         }
-        m_grid[row][col] = piece;
         piece->MoveTo(row, col);
+        m_grid[row][col] = std::move(piece);
         std::cout << "[" << TAG << "] Фигура поставлена на (" << row << ", " << col << ")\n";
         return true;
     }
 
-    Piece* Board::RemovePiece(int row, int col)
+    std::unique_ptr<Piece> Board::RemovePiece(int row, int col)
     {
         if (row < 0 || row >= BOARD_ROWS || col < 0 || col >= BOARD_COLS)
         {
             return nullptr;
         }
-        Piece* piece = m_grid[row][col];
-        m_grid[row][col] = nullptr;
-        return piece;
+        return std::move(m_grid[row][col]);  
     }
 
     void Board::Print() const

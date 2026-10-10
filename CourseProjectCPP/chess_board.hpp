@@ -4,7 +4,7 @@
 #pragma once
 
 #include "chess_piece.hpp"
-
+#include <memory>
 namespace chess
 {
 
@@ -15,7 +15,7 @@ namespace chess
         static constexpr int BOARD_ROWS = 8;
         static constexpr int BOARD_COLS = 10;
 
-        Piece* m_grid[BOARD_ROWS][BOARD_COLS];
+        std::unique_ptr<Piece> m_grid[BOARD_ROWS][BOARD_COLS];
 
     public:
         Board();
@@ -29,8 +29,8 @@ namespace chess
         [[nodiscard]] bool   IsCellFree(int row, int col) const;
         [[nodiscard]] Piece* GetPieceAt(int row, int col) const;
 
-        bool   PlacePiece(Piece* piece, int row, int col);
-        Piece* RemovePiece(int row, int col);
+        bool PlacePiece(std::unique_ptr<Piece> piece, int row, int col);
+        std::unique_ptr<Piece> RemovePiece(int row, int col);
         void   Print() const;
     };
 
