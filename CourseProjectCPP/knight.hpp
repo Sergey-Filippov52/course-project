@@ -1,12 +1,12 @@
-#pragma once
+﻿#pragma once
 #include "BasePiece.hpp"
 
 namespace chess {
 
-    class Pawn final : public BasePiece {
+    class Knight : public BasePiece {
     public:
-        Pawn(std::string_view color, int row, int col);
-        ~Pawn() override;
+        Knight(std::string_view color, int row, int col);
+        ~Knight() override;
 
         std::string GetMovePattern() const override;
         std::string Describe() const override;

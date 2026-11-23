@@ -7,13 +7,13 @@ namespace chess
 
     Board::Board()
     {
-        std::cout << "[" << TAG << "] Ð¡Ð¾Ð·Ð´Ð°Ð½Ð° Ð´Ð¾ÑÐºÐ° "
+        std::cout << "[" << TAG << "] Ñîçäàíà äîñêà "
             << BOARD_ROWS << "x" << BOARD_COLS << "\n";
     }
 
     Board::~Board()
     {
-        std::cout << "[" << TAG << "] Ð£Ð½Ð¸Ñ‡Ñ‚Ð¾Ð¶ÐµÐ½Ð° Ð²Ð¼ÐµÑÑ‚Ðµ Ñ Ñ„Ð¸Ð³ÑƒÑ€Ð°Ð¼Ð¸\n";
+        std::cout << "[" << TAG << "] Óíè÷òîæåíà âìåñòå ñ ôèãóðàìè\n";
     }
 
     bool Board::IsCellFree(int row, int col) const
@@ -25,7 +25,7 @@ namespace chess
         return m_grid[row][col] == nullptr;
     }
 
-    Piece* Board::GetPieceAt(int row, int col) const
+    BasePiece* Board::GetPieceAt(int row, int col) const
     {
         if (row < 0 || row >= BOARD_ROWS || col < 0 || col >= BOARD_COLS)
         {
@@ -34,37 +34,39 @@ namespace chess
         return m_grid[row][col].get();
     }
 
-    bool Board::PlacePiece(std::unique_ptr<Piece> piece, int row, int col)
+    // ÈÑÏÐÀÂËÅÍÎ: Piece -> BasePiece
+    bool Board::PlacePiece(std::unique_ptr<BasePiece> piece, int row, int col)
     {
         if (piece == nullptr)
         {
-            std::cout << "[" << TAG << "] ÐÐ°Ñ€ÑƒÑˆÐµÐ½Ð¸Ðµ Ð¿Ñ€Ð°Ð²Ð¸Ð»Ð°: Ð¿ÑƒÑÑ‚Ð°Ñ Ñ„Ð¸Ð³ÑƒÑ€Ð°\n";
+            std::cout << "[" << TAG << "] Íàðóøåíèå ïðàâèëà: ïóñòàÿ ôèãóðà\n";
             return false;
         }
         if (row < 0 || row >= BOARD_ROWS || col < 0 || col >= BOARD_COLS)
         {
-            std::cout << "[" << TAG << "] ÐÐ°Ñ€ÑƒÑˆÐµÐ½Ð¸Ðµ Ð¿Ñ€Ð°Ð²Ð¸Ð»Ð°: ÐºÐ»ÐµÑ‚ÐºÐ° Ð·Ð° Ð¿Ñ€ÐµÐ´ÐµÐ»Ð°Ð¼Ð¸ Ð´Ð¾ÑÐºÐ¸\n";
+            std::cout << "[" << TAG << "] Íàðóøåíèå ïðàâèëà: êëåòêà çà ïðåäåëàìè äîñêè\n";
             return false;
         }
         if (m_grid[row][col] != nullptr)
         {
-            std::cout << "[" << TAG << "] ÐÐ°Ñ€ÑƒÑˆÐµÐ½Ð¸Ðµ Ð¿Ñ€Ð°Ð²Ð¸Ð»Ð°: ÐºÐ»ÐµÑ‚ÐºÐ° (" << row << ", " << col
-                << ") ÑƒÐ¶Ðµ Ð·Ð°Ð½ÑÑ‚Ð°\n";
+            std::cout << "[" << TAG << "] Íàðóøåíèå ïðàâèëà: êëåòêà (" << row << ", " << col
+                << ") óæå çàíÿòà\n";
             return false;
         }
         piece->MoveTo(row, col);
         m_grid[row][col] = std::move(piece);
-        std::cout << "[" << TAG << "] Ð¤Ð¸Ð³ÑƒÑ€Ð° Ð¿Ð¾ÑÑ‚Ð°Ð²Ð»ÐµÐ½Ð° Ð½Ð° (" << row << ", " << col << ")\n";
+        std::cout << "[" << TAG << "] Ôèãóðà ïîñòàâëåíà íà (" << row << ", " << col << ")\n";
         return true;
     }
 
-    std::unique_ptr<Piece> Board::RemovePiece(int row, int col)
+    // ÈÑÏÐÀÂËÅÍÎ: Piece -> BasePiece
+    std::unique_ptr<BasePiece> Board::RemovePiece(int row, int col)
     {
         if (row < 0 || row >= BOARD_ROWS || col < 0 || col >= BOARD_COLS)
         {
             return nullptr;
         }
-        return std::move(m_grid[row][col]);  
+        return std::move(m_grid[row][col]);
     }
 
     void Board::Print() const
@@ -82,7 +84,7 @@ namespace chess
             std::cout << label << (label < 10 ? "  " : " ");
             for (int c = 0; c < BOARD_COLS; ++c)
             {
-                std::cout << (m_grid[r][c] != nullptr ? "Ð¤ " : ". ");
+                std::cout << (m_grid[r][c] != nullptr ? "Ô " : ". ");
             }
             std::cout << "\n";
         }

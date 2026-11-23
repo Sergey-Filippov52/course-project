@@ -1,5 +1,5 @@
-//
-// ‘‡ÈÎ BasePiece.cpp
+Ôªø//
+// –§–∞–π–ª BasePiece.cpp
 //
 
 #include "BasePiece.hpp"
@@ -68,11 +68,11 @@ namespace chess {
     }
 
     std::string BasePiece::Header() const {
-        return m_name + " (" + m_color + ") Ì‡ [" + std::to_string(m_position->row) + ", " + std::to_string(m_position->col) + "]";
+        return m_name + " (" + m_color + ") –Ω–∞ [" + std::to_string(m_position->row) + ", " + std::to_string(m_position->col) + "]";
     }
 
     std::string BasePiece::Describe() const {
-        return Header() + " | ’Ó‰ËÚ: " + GetMovePattern();
+        return Header() + " | –•–æ–¥–∏—Ç: " + GetMovePattern();
     }
 
     void BasePiece::MoveTo(int row, int col) {
@@ -81,11 +81,11 @@ namespace chess {
     }
 
     void BasePiece::Print() const {
-        std::cout << "‘Ë„Û‡(ÚËÔ=" << m_name
-            << ", ˆ‚ÂÚ=" << (m_color == "White" ? "·ÂÎ˚È" : "˜∏Ì˚È")
-            << ", ÒÚÓÍ‡=" << m_position->row << ", ÒÚÓÎ·Âˆ=" << m_position->col
-            << ", ÒÚÓËÏÓÒÚ¸=" << m_cost
-            << ", ˘ËÚ=" << (m_hasShield ? "ÂÒÚ¸" : "ÌÂÚ") << ")\n";
+        std::cout << "–§–∏–≥—É—Ä–∞(—Ç–∏–ø=" << m_name
+            << ", —Ü–≤–µ—Ç=" << (m_color == "White" ? "–±–µ–ª—ã–π" : "—á—ë—Ä–Ω—ã–π")
+            << ", —Å—Ç—Ä–æ–∫–∞=" << m_position->row << ", —Å—Ç–æ–ª–±–µ—Ü=" << m_position->col
+            << ", —Å—Ç–æ–∏–º–æ—Å—Ç—å=" << m_cost
+            << ", —â–∏—Ç=" << (m_hasShield ? "–µ—Å—Ç—å" : "–Ω–µ—Ç") << ")\n";
     }
 
 } // namespace chess
