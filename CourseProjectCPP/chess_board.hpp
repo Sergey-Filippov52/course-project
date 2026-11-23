@@ -1,9 +1,9 @@
 //
-//  Π€Π°ΠΉΠ» Board.hpp
+//  Τΰιλ Board.hpp
 //
 #pragma once
 
-#include "chess_piece.hpp"
+#include "BasePiece.hpp"
 #include <memory>
 namespace chess
 {
