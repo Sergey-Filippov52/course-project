@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using static System.Math;
 
 namespace Chess
 {
@@ -36,7 +37,7 @@ namespace Chess
             deep.Position.Row = 55;
             Console.WriteLine($"Оригинал после изменения глубокой копии: {original.Position.Row}");
 
-            Console.WriteLine("\n========== 4. Equals и HashSet ==========");
+            Console.WriteLine("\n========== 4. Переопределение Equals и коллекция HashSet ==========");
             var p1 = new Pawn("White", 1, 0);
             var p2 = new Pawn("White", 5, 5);
             var k1 = new Knight("White", 1, 0);
@@ -47,8 +48,7 @@ namespace Chess
             var unique = new HashSet<BasePiece> { p1, p2, k1 };
             Console.WriteLine($"Уникальных фигур в HashSet: {unique.Count}");
 
-            Console.WriteLine("\n========== 5. using static и using var ==========");
-            using static System.Math;
+            Console.WriteLine("\n========== 5. Директивы using static и using var ==========");
             Console.WriteLine($"Максимум из 10 и 20: {Max(10, 20)}");
 
             using var stream = new System.IO.MemoryStream();
