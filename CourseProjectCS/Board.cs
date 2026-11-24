@@ -5,12 +5,12 @@ public class Board
     public const int Rows = 8;
     public const int Cols = 10;
 
-    private readonly Piece?[,] _grid;
+    private readonly BasePiece?[,] _grid;
 
     public Board()
     {
-        _grid = new Piece?[Rows, Cols];
-        Console.WriteLine($"[board] РЎРѕР·РґР°РЅР° РґРѕСЃРєР° {Rows}x{Cols}");
+        _grid = new BasePiece?[Rows, Cols];
+        Console.WriteLine($"[board] Создана доска {Rows}x{Cols}");
     }
 
     public bool IsCellFree(int row, int col)
@@ -19,36 +19,36 @@ public class Board
         return _grid[row, col] is null;
     }
 
-    public Piece? GetPieceAt(int row, int col)
+    public BasePiece? GetPieceAt(int row, int col)
         => InBounds(row, col) ? _grid[row, col] : null;
 
-    public bool PlacePiece(Piece? piece, int row, int col)
+    public bool PlacePiece(BasePiece? piece, int row, int col)
     {
         if (piece is null)
         {
-            Console.WriteLine("[board] РќР°СЂСѓС€РµРЅРёРµ РїСЂР°РІРёР»Р°: РїСѓСЃС‚Р°СЏ С„РёРіСѓСЂР°");
+            Console.WriteLine("[board] Нарушение правила: пустая фигура");
             return false;
         }
         if (!InBounds(row, col))
         {
-            Console.WriteLine("[board] РќР°СЂСѓС€РµРЅРёРµ РїСЂР°РІРёР»Р°: РєР»РµС‚РєР° Р·Р° РїСЂРµРґРµР»Р°РјРё РґРѕСЃРєРё");
+            Console.WriteLine("[board] Нарушение правила: клетка за пределами доски");
             return false;
         }
         if (_grid[row, col] is not null)
         {
-            Console.WriteLine($"[board] РќР°СЂСѓС€РµРЅРёРµ РїСЂР°РІРёР»Р°: РєР»РµС‚РєР° ({row}, {col}) СѓР¶Рµ Р·Р°РЅСЏС‚Р°");
+            Console.WriteLine($"[board] Нарушение правила: клетка ({row}, {col}) уже занята");
             return false;
         }
         _grid[row, col] = piece;
         piece.MoveTo(row, col);
-        Console.WriteLine($"[board] Р¤РёРіСѓСЂР° РїРѕСЃС‚Р°РІР»РµРЅР° РЅР° ({row}, {col})");
+        Console.WriteLine($"[board] Фигура поставлена на ({row}, {col})");
         return true;
     }
 
-    public Piece? RemovePiece(int row, int col)
+    public BasePiece? RemovePiece(int row, int col)
     {
         if (!InBounds(row, col)) return null;
-        Piece? piece = _grid[row, col];
+        BasePiece? piece = _grid[row, col];
         _grid[row, col] = null;
         return piece;
     }
@@ -65,7 +65,7 @@ public class Board
         {
             sb.Append(r + 1).Append(r < 9 ? "  " : " ");
             for (int c = 0; c < Cols; c++)
-                sb.Append(_grid[r, c] is not null ? "Р¤ " : ". ");
+                sb.Append(_grid[r, c] is not null ? "Ф " : ". ");
             sb.AppendLine();
         }
         return sb.ToString();

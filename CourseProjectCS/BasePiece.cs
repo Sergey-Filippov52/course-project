@@ -41,26 +41,17 @@ namespace Chess
 
         public abstract BasePiece Clone();
 
-        public BasePiece ShallowCopy()
+        public void MoveTo(int row, int col)
         {
-            return (BasePiece)MemberwiseClone();
+            Position.Row = row;
+            Position.Col = col;
         }
 
-        public override bool Equals(object obj)
-        {
-            if (obj is not BasePiece other) return false;
-            return GetType() == other.GetType() && Name == other.Name;
-        }
+        public BasePiece ShallowCopy() => (BasePiece)MemberwiseClone();
 
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(GetType(), Name);
-        }
-    }
+        public override bool Equals(object? obj) =>
+            obj is BasePiece other && GetType() == other.GetType() && Name == other.Name;
 
-    public class Position
-    {
-        public int Row { get; set; }
-        public int Col { get; set; }
+        public override int GetHashCode() => HashCode.Combine(GetType(), Name);
     }
 }
