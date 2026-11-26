@@ -29,7 +29,7 @@ namespace chess
         [[nodiscard]] int          GetWizardCount() const;
 
         void Start();
-        bool MakeMove(std::unique_ptr<Piece> piece, int row, int col);
+        bool MakeMove(std::unique_ptr<BasePiece> piece, int row, int col);
         void SpawnWizards();
         bool CheckVictory() const;
     };

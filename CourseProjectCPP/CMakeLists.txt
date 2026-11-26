@@ -1,4 +1,4 @@
-# CMakeList.txt: проект CMake для CourseProjectCPP; включите исходный код и определения,
+﻿# CMakeList.txt: проект CMake для CourseProjectCPP; включите исходный код и определения,
 # укажите здесь логику для конкретного проекта.
 #
 cmake_minimum_required (VERSION 3.8)
@@ -12,7 +12,7 @@ endif()
 project ("CourseProjectCPP")
 
 # Добавьте источник в исполняемый файл этого проекта.
-add_executable (CourseProjectCPP "main.cpp"  "chess_piece.hpp" "chess_board.hpp" "chess_game.hpp" "chess_piece.cpp" "chess_board.cpp" "chess_game.cpp")
+add_executable (CourseProjectCPP "main.cpp"  "BasePiece.hpp" "chess_board.hpp" "chess_game.hpp" "BasePiece.cpp" "chess_board.cpp" "chess_game.cpp" "pawn.cpp" "knight.cpp")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET CourseProjectCPP PROPERTY CXX_STANDARD 20)
