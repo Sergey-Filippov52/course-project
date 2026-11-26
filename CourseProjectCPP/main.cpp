@@ -1,4 +1,4 @@
-ï»¿#include "pawn.hpp"
+#include "pawn.hpp"
 #include "knight.hpp"
 #include <iostream>
 #include <vector>
@@ -7,43 +7,43 @@
 int main() {
     setlocale(LC_ALL, "Russian");
 
-    std::cout << "========== 1. Ð¡Ð¾Ð·Ð´Ð°Ð½Ð¸Ðµ Ñ„Ð¸Ð³ÑƒÑ€ ==========\n";
+    std::cout << "========== 1. Ñîçäàíèå ôèãóð ==========\n";
     {
         std::vector<std::unique_ptr<chess::BasePiece>> pieces;
         pieces.push_back(std::make_unique<chess::Pawn>("White", 1, 0));
         pieces.push_back(std::make_unique<chess::Knight>("Black", 7, 1));
 
-        std::cout << "\n========== 2. ÐŸÐ¾Ð»Ð¸Ð¼Ð¾Ñ€Ñ„Ð¸Ð·Ð¼ ==========\n";
+        std::cout << "\n========== 2. Íàñëåäîâàíèå è âèðòóàëüíûå ìåòîäû ==========\n";
         for (const auto& p : pieces) {
             std::cout << p->Describe() << "\n\n";
         }
     }
 
-    std::cout << "========== 3. Ð Ð°Ð±Ð¾Ñ‚Ð° ÑÐ¾ ÑÑ‚Ñ€Ð¾ÐºÐ°Ð¼Ð¸ ==========\n";
+    std::cout << "========== 3. Ðàáîòà ñî ñòðîêàìè ==========\n";
     {
         chess::Pawn p("White", 2, 2);
-        std::string text = "Ð’Ñ‹Ð±Ñ€Ð°Ð½Ð½Ð°Ñ Ñ„Ð¸Ð³ÑƒÑ€Ð°: " + p.GetName();
+        std::string text = "Âûáðàííàÿ ôèãóðà: " + p.GetName();
         std::cout << text << "\n";
 
         std::string pattern = p.GetMovePattern();
         size_t pos = pattern.find("2");
         if (pos != std::string::npos) {
-            std::cout << "ÐÐ°Ð¹Ð´ÐµÐ½Ð° Ð¿Ð¾Ð´ÑÑ‚Ñ€Ð¾ÐºÐ°: " << pattern.substr(pos, 1) << "\n";
+            std::cout << "Íàéäåíà ïîäñòðîêà: " << pattern.substr(pos, 1) << "\n";
         }
-        if (p.GetName() == "ÐŸÐµÑˆÐºÐ°") {
-            std::cout << "Ð­Ñ‚Ð¾ Ð¿ÐµÑˆÐºÐ°!\n";
+        if (p.GetName() == "Ïåøêà") {
+            std::cout << "Ýòî ïåøêà!\n";
         }
     }
 
-    std::cout << "\n========== 4. ÐŸÐ¾Ð²ÐµÑ€Ñ…Ð½Ð¾ÑÑ‚Ð½Ð°Ñ Ð¸ Ð³Ð»ÑƒÐ±Ð¾ÐºÐ°Ñ ÐºÐ¾Ð¿Ð¸Ñ ==========\n";
+    std::cout << "\n========== 4. Ïîâåðõíîñòíàÿ è ãëóáîêàÿ êîïèÿ ==========\n";
     {
         chess::Pawn original("White", 2, 2);
         auto deepCopy = original.Clone();
-        std::cout << "Ð“Ð»ÑƒÐ±Ð¾ÐºÐ°Ñ ÐºÐ¾Ð¿Ð¸Ñ ÑÐ¾Ð·Ð´Ð°Ð½Ð°\n";
+        std::cout << "Ãëóáîêàÿ êîïèÿ ñîçäàíà\n";
     }
 
-    std::cout << "\n========== 5. Ð¡Ñ‚Ð°Ñ‚Ð¸Ñ‡ÐµÑÐºÐ¸Ðµ Ñ‡Ð»ÐµÐ½Ñ‹ ==========\n";
-    std::cout << "Ð’ÑÐµÐ³Ð¾ ÑÐ¾Ð·Ð´Ð°Ð½Ð¾ Ñ„Ð¸Ð³ÑƒÑ€: " << chess::BasePiece::GetCreatedCount() << "\n";
+    std::cout << "\n========== 5. Ñòàòè÷åñêèå ÷ëåíû ==========\n";
+    std::cout << "Âñåãî ñîçäàíî ôèãóð: " << chess::BasePiece::GetCreatedCount() << "\n";
 
     return 0;
 }
