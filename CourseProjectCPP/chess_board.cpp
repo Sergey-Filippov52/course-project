@@ -34,7 +34,6 @@ namespace chess
         return m_grid[row][col].get();
     }
 
-    // ÈÑÏÐÀÂËÅÍÎ: Piece -> BasePiece
     bool Board::PlacePiece(std::unique_ptr<BasePiece> piece, int row, int col)
     {
         if (piece == nullptr)
@@ -59,7 +58,6 @@ namespace chess
         return true;
     }
 
-    // ÈÑÏÐÀÂËÅÍÎ: Piece -> BasePiece
     std::unique_ptr<BasePiece> Board::RemovePiece(int row, int col)
     {
         if (row < 0 || row >= BOARD_ROWS || col < 0 || col >= BOARD_COLS)
