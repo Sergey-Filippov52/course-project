@@ -1,5 +1,4 @@
 #include "chess_board.hpp"
-
 #include <iostream>
 #include <utility>
 namespace chess
@@ -87,4 +86,5 @@ namespace chess
             std::cout << "\n";
         }
     }
+
 } // namespace chess
