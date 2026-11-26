@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using static System.Math;
+using static System.Math; 
 
 namespace Chess
 {
@@ -27,15 +27,16 @@ namespace Chess
 
             Console.WriteLine("\n========== 3. Поверхностная и глубокая копия ==========");
             var original = new Pawn("White", 2, 2);
+            original.Metadata.FlavorText = "Исходные метаданные";
 
             var shallow = (Pawn)original.ShallowCopy();
             var deep = (Pawn)original.Clone();
 
-            shallow.Position.Row = 99;
-            Console.WriteLine($"Оригинал после изменения поверхностной копии: {original.Position.Row}");
+            shallow.Metadata.FlavorText = "Изменено через поверхностную копию";
+            Console.WriteLine($"Оригинал после изменения поверхностной копии: {original.Metadata.FlavorText}");
 
-            deep.Position.Row = 55;
-            Console.WriteLine($"Оригинал после изменения глубокой копии: {original.Position.Row}");
+            deep.Metadata.FlavorText = "Изменено через глубокую копию";
+            Console.WriteLine($"Оригинал после изменения глубокой копии: {original.Metadata.FlavorText}");
 
             Console.WriteLine("\n========== 4. Переопределение Equals и коллекция HashSet ==========");
             var p1 = new Pawn("White", 1, 0);
@@ -49,6 +50,8 @@ namespace Chess
             Console.WriteLine($"Уникальных фигур в HashSet: {unique.Count}");
 
             Console.WriteLine("\n========== 5. Директивы using static и using var ==========");
+
+            // Здесь мы просто вызываем Max, так как using static уже подключен наверху
             Console.WriteLine($"Максимум из 10 и 20: {Max(10, 20)}");
 
             using var stream = new System.IO.MemoryStream();

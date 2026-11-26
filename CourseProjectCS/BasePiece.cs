@@ -2,6 +2,11 @@ using System;
 
 namespace Chess
 {
+    public class PieceMetadata
+    {
+        public string FlavorText { get; set; } = "Базовое описание фигуры";
+    }
+
     public abstract class BasePiece
     {
         private static int _createdCount = 0;
@@ -12,6 +17,7 @@ namespace Chess
         protected int Cost { get; private set; }
 
         public Position Position { get; private set; }
+        public PieceMetadata Metadata { get; private set; }
 
         protected BasePiece(string name, string color, int row, int col, int cost)
         {
@@ -19,6 +25,7 @@ namespace Chess
             Color = color;
             Cost = cost;
             Position = new Position { Row = row, Col = col };
+            Metadata = new PieceMetadata();
             _createdCount++;
             Console.WriteLine($"[BasePiece] Constructed: {Name}");
         }
@@ -29,6 +36,8 @@ namespace Chess
             Color = other.Color;
             Cost = other.Cost;
             Position = new Position { Row = other.Position.Row, Col = other.Position.Col };
+            Metadata = new PieceMetadata { FlavorText = other.Metadata.FlavorText };
+
             _createdCount++;
             Console.WriteLine($"[BasePiece] Copy-constructed: {Name}");
         }
@@ -43,8 +52,7 @@ namespace Chess
 
         public void MoveTo(int row, int col)
         {
-            Position.Row = row;
-            Position.Col = col;
+            Position = new Position { Row = row, Col = col };
         }
 
         public BasePiece ShallowCopy() => (BasePiece)MemberwiseClone();
